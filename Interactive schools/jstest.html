@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS TEST</title>
+</head>
+
+</html>
+
+<body>
+    <h1 style="display: block;margin:100px auto 0px auto;width: fit-content;">Open console.</h1>
+</body>
+<script>
+
+    //utils
+    function delay(t, v) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve.bind(null, v), t)
+        });
+    }
+
+    function findMax(data) {
+        return Object.keys(data).reduce((a, b) => data[a] > data[b] ? a : b);
+    }
+
+    const get = async (url, step4) => {
+        console.log("Processing...");
+        const request = await fetch(url);
+        const data = await request.json();
+        return data;
+    };
+
+
+
+    //main request function
+    function requestData(url, nextstep) {
+        get("https://intschools-javascript-test.firebaseapp.com" + url)
+        .then(data => {
+            console.log("data:", data);
+            if (nextstep) nextstep(data);
+            else return data;
+            return;
+        })
+        .catch(err => {
+            console.log("Erorr..");
+            console.log(err);
+            console.log("Retrying.....");
+            return delay(2000).then(function () {
+                return requestData(url, nextstep);
+            });
+        });
+    }
+
+
+
+    //start here
+
+    console.log('%c Starting STEP1', 'background: #222; color: #bada55');
+    requestData("/getKey", calcStep1); //go to step1
+
+    function calcStep1(data) {
+
+        const max = findMax(data);
+        console.log("max = " + max);
+        const url = "/getKey?key=" + max + "&stage=1"
+
+        console.log('%c Going to STEP2', 'background: #222; color: #bada55');
+        requestData(url, calcStep2)  //go to step2
+        return;
+    }
+
+    function calcStep2(data) {
+        console.log(data);
+        console.log('%c Going to STEP3', 'background: #222; color: #bada55');
+        let max = 0,
+            maxKey = '';
+
+        function iterativeReq(url, i, data) {
+            get(url).then(r => {
+                console.log("data:", r);
+                if (max < r) {
+                    max = r;
+                    maxKey = data[i];
+                }
+                count++;
+                console.log("Received pair: " + i + " " + data[i]);
+                if (count == data.length) {
+                    console.log("Max is: " + maxKey)
+                    calcStep3(maxKey); //go to step3
+                }
+            })
+                .catch(err => {
+                    console.log("Erorr..");
+                    console.log(err);
+                    console.log("Retrying.....");
+                    return delay(2000).then(function () {
+                        return iterativeReq(url, i, data);
+                    });
+                });
+        }
+
+        for (let i = 0; i < data.length; i++) {
+
+            let url = "https://intschools-javascript-test.firebaseapp.com/getKey?key=" + data[i] + "&stage=2";
+            count = 0;
+            iterativeReq(url, i, data);
+        }
+        return;
+    }
+
+    function calcStep3(maxKey) {
+        console.log('%c Going to STEP4', 'background: #222; color: #bada55');
+        console.log("key to be searched on step4:", maxKey);
+
+        const url = "/getKey?key=" + maxKey + "&stage=3"
+        //requestData(url, calcStep4)  //go to step2
+
+        return;
+    }
+
+    function calcStep4(data) {
+        console.log(data);
+        console.log('%c Going to STEP5', 'background: #222; color: #bada55');
+
+
+        return;
+    }
+</script>

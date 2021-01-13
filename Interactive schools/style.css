@@ -1,0 +1,461 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("fonts/TrajanProRegular.eot") format("eot"), url("fonts/TrajanProRegular.woff") format("woff"), url("fonts/TrajanProRegular.tff") format("truetype");
+}
+#wrapper #banner {
+  background: url("sprites/test-two.png");
+  background-size: cover;
+  background-position: center center;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+#wrapper #banner #main-header {
+  width: 100%;
+  height: 50px;
+  transition: 0.3s all;
+}
+#wrapper #banner #main-header.fixed {
+  position: fixed;
+  top: 0;
+  height: 50px;
+  background-color: #ffffff;
+}
+#wrapper #banner #main-header.fixed #menu {
+  margin-top: 20px;
+}
+#wrapper #banner #main-header.fixed #menu #hamburger-menu {
+  background-color: #0c0c0c;
+}
+#wrapper #banner #main-header.fixed #menu #hamburger-menu::before, #wrapper #banner #main-header.fixed #menu #hamburger-menu::after {
+  background-color: #0c0c0c;
+}
+#wrapper #banner #main-header.fixed #menu #text-menu {
+  color: #0c0c0c;
+}
+#wrapper #banner #main-header.fixed #contact #contact-button {
+  color: #0c0c0c;
+  margin-top: 15px;
+}
+#wrapper #banner #main-header.fixed #contact #contact-button .arrow {
+  border: solid #0c0c0c;
+  border-width: 0 1px 1px 0;
+}
+#wrapper #banner #main-header.fixed #contact .contact-dropdown {
+  top: 50px;
+}
+#wrapper #banner #main-header #menu {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 38px;
+  margin-left: 30px;
+}
+#wrapper #banner #main-header #menu #hamburger-menu {
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  display: inline-block;
+}
+#wrapper #banner #main-header #menu #hamburger-menu::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  left: 0px;
+}
+#wrapper #banner #main-header #menu #hamburger-menu::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 30px;
+  height: 2px;
+  /* margin: 0px 0px 0px 34px; */
+  background-color: #ffffff;
+  left: 0px;
+}
+#wrapper #banner #main-header #menu #text-menu {
+  display: inline-block;
+  font-family: Trajan Pro;
+  font-size: 18px;
+  margin-left: 2px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  color: #ffffff;
+}
+#wrapper #banner #main-header #contact {
+  display: inline;
+  float: right;
+  position: relative;
+}
+#wrapper #banner #main-header #contact.show .contact-dropdown {
+  opacity: 1;
+}
+#wrapper #banner #main-header #contact.show #contact-button .arrow {
+  transform: rotate(-135deg) translate(-5px, -5px);
+  border: solid #c20040;
+  border-width: 0 1px 1px 0;
+}
+#wrapper #banner #main-header #contact #contact-button {
+  display: inline-block;
+  color: #ffffff;
+  width: fit-content;
+  letter-spacing: 2px;
+  margin-right: 30px;
+  margin-top: 31px;
+  font-size: 18px;
+  font-family: Trajan Pro;
+  cursor: pointer;
+}
+#wrapper #banner #main-header #contact #contact-button .arrow {
+  border: solid white;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  display: inline-block;
+  color: #ffffff;
+  font-size: 25px;
+  font-family: Trajan Pro;
+  vertical-align: text-top;
+  margin-left: 3px;
+}
+#wrapper #banner #main-header #contact .contact-dropdown {
+  display: block;
+  opacity: 0;
+  width: 178px;
+  height: 152px;
+  background-color: #b0aeadcb;
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  transition: 0.3s opacity ease-in-out;
+}
+#wrapper #banner #main-header #contact .contact-dropdown .dropdown-container {
+  text-align: center;
+  margin-top: 23px;
+  font-size: 15px;
+  font-family: Arial;
+  color: #464646;
+}
+#wrapper #banner #main-header #contact .contact-dropdown .dropdown-container:hover {
+  color: #c20040;
+  cursor: pointer;
+}
+#wrapper #banner #main-header #contact .contact-dropdown #visit {
+  margin-top: 30px;
+}
+#wrapper #banner #main-header #contact .contact-dropdown .contact-dropdown-show {
+  transition: 0.5s ease-in-out;
+  top: 50px;
+}
+#wrapper #content {
+  width: 100%;
+  height: 1600px;
+}
+#wrapper #content #banner-text {
+  display: inline-block;
+  font-family: Trajan Pro;
+  color: #ffffff;
+  font-size: 35px;
+  width: 250px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 38px;
+}
+#wrapper #content #mask {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  display: none;
+}
+#wrapper #content .menu-holder {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+#wrapper #content .menu-level1 {
+  position: fixed;
+  left: -100vw;
+  width: 50%;
+  height: 100vh;
+  background-color: #ffffff;
+  text-align: right;
+  transition: 0.3s ease-in-out;
+}
+#wrapper #content .menu-level1 .close-menu, #wrapper #content .menu-level1 .close-menu2 {
+  margin: 38px 0px 0px 31px;
+  width: 107px;
+  position: relative;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: Trajan Pro;
+  transition: 0.5s ease-in-out;
+  color: #464646;
+  cursor: pointer;
+  line-height: 20px;
+}
+#wrapper #content .menu-level1 .close-menu:hover, #wrapper #content .menu-level1 .close-menu2:hover {
+  color: #c20040;
+  transition: 0s;
+}
+#wrapper #content .menu-level1 .close-menu2 {
+  font-size: 30px;
+  position: absolute;
+  top: 38px;
+  margin: 0;
+  right: 38px;
+}
+#wrapper #content .menu-level1-show {
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+#wrapper #content #x-sign-level2 {
+  float: right;
+  margin: 38px 30px 0px 0px;
+  cursor: pointer;
+  color: #464646;
+}
+#wrapper #content .x-sign {
+  float: left;
+  font-size: 30px;
+}
+#wrapper #content .menu-level1-content {
+  margin: 90px 60px 0px 60px;
+}
+#wrapper #content .parent-menu {
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: Arial;
+  color: #464646;
+  text-align: left;
+  cursor: pointer;
+  margin-top: 28px;
+}
+#wrapper #content .parent-menu.selected {
+  color: #c20040;
+}
+#wrapper #content .parent-menu:hover {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #c20040;
+  text-align: left;
+  cursor: pointer;
+}
+#wrapper #content .selected .plus-simbol:after {
+  content: "−";
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+#wrapper #content .plus-simbol {
+  display: inline;
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+  width: 20px;
+  text-align: right;
+  height: 20px;
+}
+#wrapper #content .plus-simbol:after {
+  content: "+";
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+#wrapper #content .underline {
+  width: 100%;
+  height: 1px;
+  background-color: #ececec;
+  margin-top: 9px;
+}
+#wrapper #content .menu-level2 {
+  position: absolute;
+  width: 50%;
+  height: 100vh;
+  background: whitesmoke;
+  top: 0px;
+  left: -60%;
+  transition: 0.2s ease-in-out;
+}
+#wrapper #content .menu-level2-show {
+  left: 50%;
+}
+#wrapper #content .children {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  left: -200%;
+  transition: 0.5s left;
+  background: whitesmoke;
+  top: 0;
+  width: 50vw;
+  height: calc(100vh - 180px);
+  padding-left: 80px;
+  padding-bottom: 180px;
+  position: fixed;
+  text-align: left;
+  z-index: -1;
+}
+#wrapper #content .children-show {
+  left: 50%;
+}
+#wrapper #content .menu-level2-content {
+  margin: 0px 0px 0px 85px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#wrapper #content .children-menu {
+  margin-bottom: 30px;
+  font-family: arial;
+  font-size: 15px;
+  color: #464646;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#wrapper #content .dropdown-container {
+  text-align: center;
+  margin-top: 23px;
+  font-size: 15px;
+  font-family: Arial;
+  color: #464646;
+}
+#wrapper #content #visit {
+  margin-top: 33px;
+}
+#wrapper #content .contact-dropdown-show {
+  transition: 0.5s ease-in-out;
+  top: 50px;
+}
+@media screen and (max-width: 700px) {
+  #wrapper #content .close-menu2 {
+    display: none;
+  }
+  #wrapper #content .selected .plus-simbol:after {
+    position: absolute;
+    top: -5px;
+  }
+  #wrapper #content .parent-menu.selected {
+    position: relative;
+  }
+  #wrapper #content .menu-level1 {
+    width: 100%;
+    height: 50vh;
+  }
+  #wrapper #content .menu-level1 .close-menu2 {
+    top: 8%;
+    left: 38px;
+  }
+  #wrapper #content .menu-level1-show {
+    width: 100%;
+    height: 50vh;
+  }
+  #wrapper #content .menu-level1-show .menu-holder {
+    width: 100vw;
+    height: 50vh;
+    overflow: scroll;
+  }
+  #wrapper #content .menu-level1 {
+    width: 100%;
+    height: 50vh;
+    left: 0px;
+    top: -1250px;
+  }
+  #wrapper #content .menu-level1.menu-level1-show {
+    width: 100%;
+    height: 50vh;
+    top: 0px;
+  }
+  #wrapper #content .menu-level1 .menu-holder {
+    width: 100vw;
+    height: 100vh;
+  }
+  #wrapper #content .children {
+    background-color: #ffffff;
+    position: unset;
+    padding: unset;
+    height: unset;
+    display: none;
+  }
+  #wrapper #content .children-show {
+    display: block;
+    margin-top: 30px;
+  }
+  #wrapper #content .children-menu {
+    width: calc(100vw - 83px);
+    font-size: 12px;
+  }
+  #wrapper #content #banner-text {
+    font-size: 22px;
+    top: 90px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
